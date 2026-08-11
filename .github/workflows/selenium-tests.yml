@@ -1,4 +1,3 @@
-```yaml
 name: Selenium Tests
 
 on:
@@ -113,4 +112,3 @@ jobs:
       - name: Stop Selenium Grid
         if: always()
         run: docker compose down
-```
