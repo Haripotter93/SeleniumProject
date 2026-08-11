@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.testng.ITestContext;
@@ -24,21 +22,21 @@ import testBase.BaseClass;
 
 public class ExtentReportManager implements ITestListener {
 
-    public ExtentSparkReporter sparkReporter;
-    public ExtentReports extent;
-    public ExtentTest test;
+    private static ExtentSparkReporter sparkReporter;
+    private static ExtentReports extent;
+    private static String repName;
 
-    String repName;
-
+    /*
+     * Create report only once for the complete Maven/TestNG execution.
+     */
     @Override
-    public void onStart(ITestContext testContext) {
+    public synchronized void onStart(ITestContext testContext) {
 
-        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss")
-                .format(new Date());
+        // Prevent creation of multiple reports
+        if (extent != null) {
+            return;
+        }
 
-        repName = "Test-Report-" + timeStamp + ".html";
-
-        // Create reports directory
         Path reportsDirectory = Paths.get(
                 System.getProperty("user.dir"),
                 "reports"
@@ -47,61 +45,109 @@ public class ExtentReportManager implements ITestListener {
         try {
             Files.createDirectories(reportsDirectory);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(
+                    "Unable to create reports directory",
+                    e
+            );
         }
 
-        // Create report path
-        String reportPath = reportsDirectory
-                .resolve(repName)
-                .toString();
+        /*
+         * One fixed report name.
+         * This prevents multiple timestamped reports.
+         */
+        repName = "ExtentReport.html";
+
+        Path reportPath = reportsDirectory.resolve(repName);
 
         System.out.println("==========================================");
-        System.out.println("Extent Report Path:");
-        System.out.println(reportPath);
+        System.out.println("Creating Extent Report");
+        System.out.println("Report Path: " + reportPath.toAbsolutePath());
         System.out.println("==========================================");
 
-        sparkReporter = new ExtentSparkReporter(reportPath);
+        sparkReporter = new ExtentSparkReporter(
+                reportPath.toString()
+        );
 
-        sparkReporter.config().setDocumentTitle("Automation Report");
-        sparkReporter.config().setReportName("Functional Testing");
-        sparkReporter.config().setTheme(Theme.DARK);
+        sparkReporter.config().setDocumentTitle(
+                "Automation Test Report"
+        );
+
+        sparkReporter.config().setReportName(
+                "Selenium Automation Test Report"
+        );
+
+        sparkReporter.config().setTheme(
+                Theme.DARK
+        );
 
         extent = new ExtentReports();
 
         extent.attachReporter(sparkReporter);
 
-        extent.setSystemInfo("Computer Name", "localhost");
-        extent.setSystemInfo("Environment", "QA");
-        extent.setSystemInfo("Tester Name", "Pavan");
+        extent.setSystemInfo(
+                "Computer Name",
+                "GitHub Actions"
+        );
 
-        String os = testContext
-                .getCurrentXmlTest()
-                .getParameter("os");
+        extent.setSystemInfo(
+                "Environment",
+                "QA"
+        );
 
-        extent.setSystemInfo("Operating System", os);
+        extent.setSystemInfo(
+                "Tester Name",
+                "Pavan"
+        );
 
-        String browser = testContext
-                .getCurrentXmlTest()
-                .getParameter("browser");
+        // XML parameter: OS
+        if (testContext.getCurrentXmlTest() != null) {
 
-        extent.setSystemInfo("Browser", browser);
+            String os = testContext
+                    .getCurrentXmlTest()
+                    .getParameter("os");
 
-        List<String> includedGroups =
-                testContext.getCurrentXmlTest().getIncludedGroups();
+            if (os != null) {
+                extent.setSystemInfo(
+                        "Operating System",
+                        os
+                );
+            }
 
-        if (!includedGroups.isEmpty()) {
-            extent.setSystemInfo(
-                    "Groups",
-                    includedGroups.toString()
-            );
+            // XML parameter: Browser
+            String browser = testContext
+                    .getCurrentXmlTest()
+                    .getParameter("browser");
+
+            if (browser != null) {
+                extent.setSystemInfo(
+                        "Browser",
+                        browser
+                );
+            }
+
+            List<String> includedGroups =
+                    testContext
+                            .getCurrentXmlTest()
+                            .getIncludedGroups();
+
+            if (includedGroups != null &&
+                    !includedGroups.isEmpty()) {
+
+                extent.setSystemInfo(
+                        "Groups",
+                        includedGroups.toString()
+                );
+            }
         }
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
 
-        test = extent.createTest(
+        ExtentTest test = extent.createTest(
                 result.getTestClass().getName()
+                        + " - "
+                        + result.getName()
         );
 
         test.assignCategory(
@@ -110,15 +156,18 @@ public class ExtentReportManager implements ITestListener {
 
         test.log(
                 Status.PASS,
-                result.getName() + " got successfully executed"
+                result.getName()
+                        + " got successfully executed"
         );
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
 
-        test = extent.createTest(
+        ExtentTest test = extent.createTest(
                 result.getTestClass().getName()
+                        + " - "
+                        + result.getName()
         );
 
         test.assignCategory(
@@ -127,34 +176,48 @@ public class ExtentReportManager implements ITestListener {
 
         test.log(
                 Status.FAIL,
-                result.getName() + " got failed"
+                result.getName()
+                        + " got failed"
         );
 
         if (result.getThrowable() != null) {
+
             test.log(
-                    Status.INFO,
-                    result.getThrowable().getMessage()
+                    Status.FAIL,
+                    result.getThrowable().toString()
             );
         }
 
         try {
 
             String imgPath =
-                    new BaseClass().captureScreen(result.getName());
+                    new BaseClass()
+                            .captureScreen(result.getName());
 
-            test.addScreenCaptureFromPath(imgPath);
+            if (imgPath != null) {
 
-        } catch (IOException e) {
+                test.addScreenCaptureFromPath(
+                        imgPath
+                );
+            }
 
-            e.printStackTrace();
+        } catch (Exception e) {
+
+            test.log(
+                    Status.WARNING,
+                    "Unable to attach screenshot: "
+                            + e.getMessage()
+            );
         }
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
 
-        test = extent.createTest(
+        ExtentTest test = extent.createTest(
                 result.getTestClass().getName()
+                        + " - "
+                        + result.getName()
         );
 
         test.assignCategory(
@@ -163,50 +226,79 @@ public class ExtentReportManager implements ITestListener {
 
         test.log(
                 Status.SKIP,
-                result.getName() + " got skipped"
+                result.getName()
+                        + " got skipped"
         );
 
         if (result.getThrowable() != null) {
+
             test.log(
-                    Status.INFO,
-                    result.getThrowable().getMessage()
+                    Status.SKIP,
+                    result.getThrowable().toString()
             );
         }
     }
 
     @Override
-    public void onFinish(ITestContext context) {
+    public synchronized void onFinish(ITestContext context) {
 
-        extent.flush();
+        /*
+         * Flush the single report.
+         */
+        if (extent != null) {
 
-        String reportPath = Paths.get(
-                System.getProperty("user.dir"),
-                "reports",
-                repName
-        ).toString();
+            extent.flush();
 
-        File extentReport = new File(reportPath);
+            System.out.println(
+                    "=========================================="
+            );
 
-        System.out.println("==========================================");
-        System.out.println("Extent Report Generated");
-        System.out.println("Path: " + extentReport.getAbsolutePath());
-        System.out.println("Exists: " + extentReport.exists());
-        System.out.println("==========================================");
+            System.out.println(
+                    "Extent Report Generated"
+            );
 
-        try {
+            System.out.println(
+                    "Path: "
+                            + Paths.get(
+                                    System.getProperty("user.dir"),
+                                    "reports",
+                                    repName
+                            ).toAbsolutePath()
+            );
 
-            // Open report only when running locally
-            if (System.getenv("GITHUB_ACTIONS") == null) {
+            System.out.println(
+                    "=========================================="
+            );
+        }
 
-                if (extentReport.exists()) {
+        /*
+         * Open report only on local machine.
+         *
+         * GitHub Actions does NOT have a desktop.
+         */
+        if (System.getenv("GITHUB_ACTIONS") == null) {
+
+            try {
+
+                Path reportPath = Paths.get(
+                        System.getProperty("user.dir"),
+                        "reports",
+                        repName
+                );
+
+                File report = reportPath.toFile();
+
+                if (report.exists() &&
+                        Desktop.isDesktopSupported()) {
+
                     Desktop.getDesktop()
-                           .browse(extentReport.toURI());
+                            .browse(report.toURI());
                 }
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
             }
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
         }
     }
 }
