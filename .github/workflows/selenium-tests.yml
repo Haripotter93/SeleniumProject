@@ -1,52 +1,36 @@
-name: Selenium Tests
+services:
 
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+  selenium-hub:
+    image: selenium/hub:latest
+    ports:
+      - "4442-4444:4442-4444"
+    networks:
+      - grid
 
-jobs:
-  selenium-tests:
-    runs-on: ubuntu-latest
+  node-chrome:
+    image: selenium/node-chrome:latest
+    shm_size: 2gb
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    depends_on:
+      - selenium-hub
+    networks:
+      - grid
 
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v4
+  node-firefox:
+    image: selenium/node-firefox:latest
+    shm_size: 2gb
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    depends_on:
+      - selenium-hub
+    networks:
+      - grid
 
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Start Selenium Grid
-        run: docker compose up -d
-
-      - name: Wait for Selenium Grid
-        run: |
-          echo "Waiting for Selenium Grid..."
-          for i in {1..30}; do
-            if curl -sf http://localhost:4444/status > /dev/null; then
-              echo "Selenium Grid is ready!"
-              break
-            fi
-            sleep 2
-          done
-
-      - name: Check Selenium Grid
-        run: curl -s http://localhost:4444/status
-
-      - name: Run Selenium tests
-        run: mvn clean test
-
-      - name: Show Docker logs if tests fail
-        if: failure()
-        run: docker compose logs
-
-      - name: Stop Selenium Grid
-        if: always()
-        run: docker compose down
+networks:
+  grid:
+    driver: bridge
