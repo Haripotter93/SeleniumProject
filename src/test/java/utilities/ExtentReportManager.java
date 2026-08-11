@@ -91,7 +91,9 @@ public class ExtentReportManager implements ITestListener {
 		String pathOfExtentReport = System.getProperty("user.dir") + "\\reports\\" + repName;
 		File extentReport = new File(pathOfExtentReport);
 		try {
-			Desktop.getDesktop().browse(extentReport.toURI());
+			if (System.getenv("GITHUB_ACTIONS") == null) {
+			    Desktop.getDesktop().browse(extentReport.toURI());
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
