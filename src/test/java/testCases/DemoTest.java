@@ -1,6 +1,7 @@
 package testCases;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -44,11 +45,14 @@ public class DemoTest extends BaseClass {
                     )
             );
 
-            Actions actions = new Actions(driver);
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].scrollIntoView({block: 'center', inline: 'center'});",
+                    link
+            );
 
-            actions.moveToElement(link).perform();
-
-            link.click();
+            demoPage.wait.until(
+                    ExpectedConditions.elementToBeClickable(link)
+            ).click();
 
             demoPage.wait.until(ExpectedConditions.urlContains("/screenshots"));
 
