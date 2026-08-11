@@ -1,0 +1,87 @@
+name: Selenium Tests
+
+on:
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  selenium-tests:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # 1. Checkout source code
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      # 2. Setup Java
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      # 3. Check Java and Maven
+      - name: Check environment
+        run: |
+          java -version
+          mvn -version
+          docker --version
+          docker compose version
+
+      # 4. Start Selenium Grid
+      - name: Start Selenium Grid
+        run: docker compose up -d
+
+      # 5. Check containers
+      - name: Check Selenium containers
+        run: docker compose ps
+
+      # 6. Wait for Selenium Grid
+      - name: Wait for Selenium Grid
+        run: |
+          echo "Waiting for Selenium Grid..."
+
+          for i in {1..30}; do
+            if curl -s http://localhost:4444/status | grep -q '"ready":true'; then
+              echo "Selenium Grid is ready!"
+              break
+            fi
+
+            echo "Grid not ready yet..."
+            sleep 2
+          done
+
+          curl http://localhost:4444/status
+
+      # 7. Run TestNG/Maven tests
+      - name: Run Selenium tests
+        run: mvn clean test
+
+      # 8. Show Selenium logs if tests fail
+      - name: Selenium logs
+        if: always()
+        run: docker compose logs
+
+      # 9. Stop Selenium Grid
+      - name: Stop Selenium Grid
+        if: always()
+        run: docker compose down
+
+      # 10. Upload test reports
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-test-reports
+          path: |
+            test-output/
+            screenshots/
+            test-output/**/*.html
