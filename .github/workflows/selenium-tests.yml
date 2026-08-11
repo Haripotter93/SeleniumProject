@@ -4,32 +4,30 @@ on:
   push:
     branches:
       - master
-
   pull_request:
     branches:
       - master
 
 jobs:
   selenium-tests:
-
     runs-on: ubuntu-latest
 
     steps:
 
-      # 1. Checkout source code
-      - name: Checkout code
-        uses: actions/checkout@v6
+      # 1. Checkout project
+      - name: Checkout source code
+        uses: actions/checkout@v4
 
-      # 2. Setup Java
-      - name: Set up JDK 21
+      # 2. Setup Java 21
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
+          distribution: temurin
           java-version: '21'
-          distribution: 'temurin'
           cache: maven
 
       # 3. Check Java and Maven
-      - name: Check environment
+      - name: Check Java and Maven
         run: |
           java -version
           mvn -version
@@ -40,40 +38,35 @@ jobs:
       - name: Start Selenium Grid
         run: docker compose up -d
 
-      # 5. Check containers
-      - name: Check Selenium containers
-        run: docker compose ps
-
-      # 6. Wait for Selenium Grid
+      # 5. Wait for Selenium Grid
       - name: Wait for Selenium Grid
         run: |
           echo "Waiting for Selenium Grid..."
-
           for i in {1..30}; do
             if curl -s http://localhost:4444/status | grep -q '"ready":true'; then
               echo "Selenium Grid is ready!"
               break
             fi
-
-            echo "Grid not ready yet..."
+            echo "Waiting..."
             sleep 2
           done
 
-          curl http://localhost:4444/status
+      # 6. Display Selenium Grid status
+      - name: Check Selenium Grid
+        run: curl http://localhost:4444/status
 
-      # 7. Run TestNG/Maven tests
+      # 7. Show running containers
+      - name: Docker containers
+        run: docker compose ps
+
+      # 8. Run TestNG tests through Maven
       - name: Run Selenium tests
         run: mvn clean test
 
-      # 8. Show Selenium logs if tests fail
-      - name: Selenium logs
-        if: always()
+      # 9. Show Docker logs if tests fail
+      - name: Selenium Grid logs
+        if: failure()
         run: docker compose logs
-
-      # 9. Stop Selenium Grid
-      - name: Stop Selenium Grid
-        if: always()
-        run: docker compose down
 
       # 10. Upload test reports
       - name: Upload test reports
@@ -82,6 +75,11 @@ jobs:
         with:
           name: selenium-test-reports
           path: |
+            target/surefire-reports/
             test-output/
-            screenshots/
-            test-output/**/*.html
+          if-no-files-found: ignore
+
+      # 11. Stop Selenium Grid
+      - name: Stop Selenium Grid
+        if: always()
+        run: docker compose down
