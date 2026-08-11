@@ -87,16 +87,23 @@ public class ExtentReportManager implements ITestListener {
 
 	@Override
 	public void onFinish(ITestContext context) {
-		extent.flush();
-		String pathOfExtentReport = System.getProperty("user.dir") + "\\reports\\" + repName;
-		File extentReport = new File(pathOfExtentReport);
-		try {
-			if (System.getenv("GITHUB_ACTIONS") == null) {
-			    Desktop.getDesktop().browse(extentReport.toURI());
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
+	    extent.flush();
+
+	    String pathOfExtentReport = System.getProperty("user.dir")
+	            + File.separator + "reports"
+	            + File.separator + repName;
+
+	    File extentReport = new File(pathOfExtentReport);
+
+	    try {
+	        // Open report automatically only when running locally
+	        if (System.getenv("GITHUB_ACTIONS") == null) {
+	            Desktop.getDesktop().browse(extentReport.toURI());
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 	}
 
 

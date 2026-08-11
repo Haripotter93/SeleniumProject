@@ -1,31 +1,69 @@
-version: '3'
-services:
+name: Selenium Tests
 
-  selenium-hub:
-    image: selenium/hub
-    ports:
-      - '4442-4444:4442-4444'
-    networks:
-      - grid
+on:
+  push:
+    branches:
+      - master
 
-  node-chrome:
-    image: selenium/node-chrome
-    environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-    networks:
-      - grid
+  pull_request:
+    branches:
+      - master
 
-  node-firefox:
-    image: selenium/node-firefox
-    environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-    networks:
-      - grid
+jobs:
 
-networks:
-  grid:
-    driver: bridge
+  selenium-tests:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Start Selenium Grid
+        run: |
+          docker compose up -d
+
+      - name: Wait for Selenium Grid
+        run: |
+          echo "Waiting for Selenium Grid..."
+
+          for i in {1..30}; do
+            if curl -s http://localhost:4444/status | grep -q '"ready":true'; then
+              echo "Selenium Grid is ready!"
+              break
+            fi
+
+            echo "Waiting..."
+            sleep 2
+          done
+
+      - name: Run Selenium Tests
+        run: |
+          mvn clean test
+
+      - name: Upload Extent Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-extent-report
+          path: reports/
+
+      - name: Upload Surefire Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: target/surefire-reports/
+
+      - name: Stop Selenium Grid
+        if: always()
+        run: |
+          docker compose down
