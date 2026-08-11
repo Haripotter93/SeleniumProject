@@ -40,7 +40,7 @@ public class DemoPage {
 	WebElement screenshot_link;
 
 	// Actions
-	public void search(String value) {
+	public void search(String value) throws InterruptedException {
 	    wait.until(ExpectedConditions.elementToBeClickable(btn_searchButton))
 	            .click();
 	    wait.until(ExpectedConditions.visibilityOf(txt_searchBox))
@@ -50,6 +50,11 @@ public class DemoPage {
 	    wait.until(ExpectedConditions.urlToBe(
 	            "https://playwright.dev/docs/pom"
 	    ));
+	    wait.until(driver -> {
+	        WebElement heading = driver.findElement(By.tagName("h1"));
+	        return heading.isDisplayed()
+	                && heading.getText().trim().equals(value);
+	    });
 	    WebElement heading = wait.until(
 	            ExpectedConditions.refreshed(
 	                    ExpectedConditions.visibilityOfElementLocated(By.tagName("h1"))

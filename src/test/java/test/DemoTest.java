@@ -29,9 +29,9 @@ public class DemoTest {
 				driver.getTitle().equals("Fast and reliable end-to-end testing for modern web apps | Playwright");
 				demoPage.search("Page object models");
 				Assert.assertEquals(driver.getCurrentUrl(), "https://playwright.dev/docs/pom");
-				WebElement link = demoPage.wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[normalize-space()='Screenshots'])[1]")));
 				driver.findElement(By.linkText("Screenshots"));
 				Actions actions = new Actions(driver);
+				WebElement link = demoPage.wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[normalize-space()='Screenshots'])[1]")));
 				actions.moveToElement(link).perform();
 				link.click();
 				driver.getCurrentUrl().contains("/screenshots");
