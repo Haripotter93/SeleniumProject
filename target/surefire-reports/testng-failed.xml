@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="1" name="Failed suite [Suite]" guice-stage="DEVELOPMENT" verbose="0">
+  <listeners>
+    <listener class-name="utilities.ExtentReportManager"/>
+  </listeners>
+  <test thread-count="1" name="Linux-Firefox(failed)" verbose="0">
+    <parameter name="os" value="Linux"/>
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="testCases.DemoTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="demoTest"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- testCases.DemoTest -->
+    </classes>
+  </test> <!-- Linux-Firefox(failed) -->
+</suite> <!-- Failed suite [Suite] -->

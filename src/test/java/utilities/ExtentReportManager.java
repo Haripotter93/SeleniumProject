@@ -27,15 +27,15 @@ public class ExtentReportManager implements ITestListener {
     private static String repName;
 
     /*
-     * Create report only once for the complete Maven/TestNG execution.
+     * Create one Extent report for each TestNG <test>.
+     *
+     * Example:
+     *
+     * Linux-Chrome  -> reports/Linux-Chrome.html
+     * Linux-Firefox -> reports/Linux-Firefox.html
      */
     @Override
     public synchronized void onStart(ITestContext testContext) {
-
-        // Prevent creation of multiple reports
-        if (extent != null) {
-            return;
-        }
 
         Path reportsDirectory = Paths.get(
                 System.getProperty("user.dir"),
@@ -52,15 +52,23 @@ public class ExtentReportManager implements ITestListener {
         }
 
         /*
-         * One fixed report name.
-         * This prevents multiple timestamped reports.
+         * Get the TestNG <test> name.
          */
-        repName = "ExtentReport.html";
+        String testName = testContext.getName();
+
+        /*
+         * Make the test name safe for use as a file name.
+         */
+        repName = testName.replaceAll(
+                "[\\\\/:*?\"<>|]",
+                "_"
+        ) + ".html";
 
         Path reportPath = reportsDirectory.resolve(repName);
 
         System.out.println("==========================================");
         System.out.println("Creating Extent Report");
+        System.out.println("Test Name  : " + testName);
         System.out.println("Report Path: " + reportPath.toAbsolutePath());
         System.out.println("==========================================");
 
@@ -69,11 +77,11 @@ public class ExtentReportManager implements ITestListener {
         );
 
         sparkReporter.config().setDocumentTitle(
-                "Automation Test Report"
+                "Automation Test Report - " + testName
         );
 
         sparkReporter.config().setReportName(
-                "Selenium Automation Test Report"
+                "Selenium Automation Test Report - " + testName
         );
 
         sparkReporter.config().setTheme(
@@ -86,7 +94,7 @@ public class ExtentReportManager implements ITestListener {
 
         extent.setSystemInfo(
                 "Computer Name",
-                "GitHub Actions"
+                "LPT1079"
         );
 
         extent.setSystemInfo(
@@ -99,12 +107,18 @@ public class ExtentReportManager implements ITestListener {
                 "Pavan"
         );
 
-        // XML parameter: OS
+        /*
+         * Read OS and browser parameters from TestNG XML.
+         */
         if (testContext.getCurrentXmlTest() != null) {
 
             String os = testContext
                     .getCurrentXmlTest()
                     .getParameter("os");
+
+            String browser = testContext
+                    .getCurrentXmlTest()
+                    .getParameter("browser");
 
             if (os != null) {
                 extent.setSystemInfo(
@@ -112,11 +126,6 @@ public class ExtentReportManager implements ITestListener {
                         os
                 );
             }
-
-            // XML parameter: Browser
-            String browser = testContext
-                    .getCurrentXmlTest()
-                    .getParameter("browser");
 
             if (browser != null) {
                 extent.setSystemInfo(
@@ -242,12 +251,15 @@ public class ExtentReportManager implements ITestListener {
     @Override
     public synchronized void onFinish(ITestContext context) {
 
-        /*
-         * Flush the single report.
-         */
         if (extent != null) {
 
             extent.flush();
+
+            Path reportPath = Paths.get(
+                    System.getProperty("user.dir"),
+                    "reports",
+                    repName
+            );
 
             System.out.println(
                     "=========================================="
@@ -258,47 +270,51 @@ public class ExtentReportManager implements ITestListener {
             );
 
             System.out.println(
-                    "Path: "
-                            + Paths.get(
-                                    System.getProperty("user.dir"),
-                                    "reports",
-                                    repName
-                            ).toAbsolutePath()
+                    "Test Name : " + context.getName()
+            );
+
+            System.out.println(
+                    "Path      : "
+                            + reportPath.toAbsolutePath()
             );
 
             System.out.println(
                     "=========================================="
             );
-        }
 
-        /*
-         * Open report only on local machine.
-         *
-         * GitHub Actions does NOT have a desktop.
-         */
-        if (System.getenv("GITHUB_ACTIONS") == null) {
+            /*
+             * Open report only on local machine.
+             *
+             * GitHub Actions does not have a desktop.
+             */
+            if (System.getenv("GITHUB_ACTIONS") == null) {
 
-            try {
+                try {
 
-                Path reportPath = Paths.get(
-                        System.getProperty("user.dir"),
-                        "reports",
-                        repName
-                );
+                    File report = reportPath.toFile();
 
-                File report = reportPath.toFile();
+                    if (report.exists() &&
+                            Desktop.isDesktopSupported()) {
 
-                if (report.exists() &&
-                        Desktop.isDesktopSupported()) {
+                        Desktop.getDesktop()
+                                .browse(report.toURI());
+                    }
 
-                    Desktop.getDesktop()
-                            .browse(report.toURI());
+                } catch (Exception e) {
+
+                    e.printStackTrace();
                 }
-
-            } catch (Exception e) {
-
-                e.printStackTrace();
             }
+
+            /*
+             * IMPORTANT:
+             *
+             * Reset these so the next TestNG <test>
+             * creates its own report.
+             */
+            extent = null;
+            sparkReporter = null;
         }
     }
 }
+

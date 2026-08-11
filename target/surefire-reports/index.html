@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Suite" class="navigator-link">
-              <span class="suite-name border-passed">Suite</span>
+              <span class="suite-name border-failed">Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -92,7 +92,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">12 methods,   12 passed</span>
+                    <span class="method-stats">12 methods, 1 failed,   11 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Suite" class="hide-methods failed suite-Suite"> (hide)</a> <!-- hide-methods failed suite-Suite -->
+                      <a href="#" panel-name="suite-Suite" class="show-methods failed suite-Suite"> (show)</a> <!-- show-methods failed suite-Suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Suite">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="testCases.DemoTest" class="method navigator-link" hash-for-method="demoTest">demoTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Suite -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -108,12 +122,22 @@
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="testCases.DemoTest" class="method navigator-link" hash-for-method="demoTest">demoTest</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="testCases.ExcelDataTest" class="method navigator-link" hash-for-method="excelDataTest(lakshmi@yahoo.com, Laxmi, Invalid)">excelDataTest(lakshmi@yahoo.com, Laxmi, Invalid)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="testCases.ExcelDataTest" class="method navigator-link" hash-for-method="excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)">excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-Suite" title="testCases.ExcelDataTest" class="method navigator-link" hash-for-method="excelDataTest(pavanoltraining@gmail.com, test@123, Valid)">excelDataTest(pavanoltraining@gmail.com, test@123, Valid)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="testCases.ExcelDataTest" class="method navigator-link" hash-for-method="excelDataTest(laks@yahoo.com, xyz, Invalid)">excelDataTest(laks@yahoo.com, xyz, Invalid)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -124,26 +148,6 @@
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-Suite" title="testCases.ExcelDataTest" class="method navigator-link" hash-for-method="excelDataTest(lakshmi@yahoo.com, Laxmi, Invalid)">excelDataTest(lakshmi@yahoo.com, Laxmi, Invalid)</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="testCases.ExcelDataTest" class="method navigator-link" hash-for-method="excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)">excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="testCases.ExcelDataTest" class="method navigator-link" hash-for-method="excelDataTest(laks@yahoo.com, xyz, Invalid)">excelDataTest(laks@yahoo.com, xyz, Invalid)</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="testCases.ExcelDataTest" class="method navigator-link" hash-for-method="excelDataTest(lakshmi@yahoo.com, Laxmi, Invalid)">excelDataTest(lakshmi@yahoo.com, Laxmi, Invalid)</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="testCases.ExcelDataTest" class="method navigator-link" hash-for-method="excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)">excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -159,6 +163,11 @@
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-Suite" title="testCases.ExcelDataTest" class="method navigator-link" hash-for-method="excelDataTest(abc123@gmail.com, test@123, Valid)">excelDataTest(abc123@gmail.com, test@123, Valid)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="testCases.ExcelDataTest" class="method navigator-link" hash-for-method="excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)">excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Suite -->
@@ -173,9 +182,9 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Suite" class="panel Suite">
-          <div class="suite-Suite-class-passed">
+          <div class="suite-Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
+              <img src="failed.png"/>
               <span class="class-name">testCases.DemoTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -184,8 +193,21 @@
                   <a name="demoTest">
                   </a> <!-- demoTest -->
                   <span class="method-name">demoTest</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [Fast and reliable end-to-end testing for modern web apps | Playwright] but found [Playwright]
+	at testCases.DemoTest.demoTest(DemoTest.java:30)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+... Removed 35 stack frames
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Suite-class-failed -->
+          <div class="suite-Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">testCases.DemoTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
                   <a name="demoTest">
@@ -203,10 +225,34 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
+                  <a name="excelDataTest(lakshmi@yahoo.com, Laxmi, Invalid)">
+                  </a> <!-- excelDataTest(lakshmi@yahoo.com, Laxmi, Invalid) -->
+                  <span class="method-name">excelDataTest</span>
+                  <span class="parameters">(lakshmi@yahoo.com,Laxmi,Invalid)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)">
+                  </a> <!-- excelDataTest(laksh@yahoo.com, Lakshmi, Invalid) -->
+                  <span class="method-name">excelDataTest</span>
+                  <span class="parameters">(laksh@yahoo.com,Lakshmi,Invalid)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
                   <a name="excelDataTest(pavanoltraining@gmail.com, test@123, Valid)">
                   </a> <!-- excelDataTest(pavanoltraining@gmail.com, test@123, Valid) -->
                   <span class="method-name">excelDataTest</span>
                   <span class="parameters">(pavanoltraining@gmail.com,test@123,Valid)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="excelDataTest(laks@yahoo.com, xyz, Invalid)">
+                  </a> <!-- excelDataTest(laks@yahoo.com, xyz, Invalid) -->
+                  <span class="method-name">excelDataTest</span>
+                  <span class="parameters">(laks@yahoo.com,xyz,Invalid)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
@@ -227,38 +273,6 @@
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)">
-                  </a> <!-- excelDataTest(laksh@yahoo.com, Lakshmi, Invalid) -->
-                  <span class="method-name">excelDataTest</span>
-                  <span class="parameters">(laksh@yahoo.com,Lakshmi,Invalid)</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="excelDataTest(laks@yahoo.com, xyz, Invalid)">
-                  </a> <!-- excelDataTest(laks@yahoo.com, xyz, Invalid) -->
-                  <span class="method-name">excelDataTest</span>
-                  <span class="parameters">(laks@yahoo.com,xyz,Invalid)</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="excelDataTest(lakshmi@yahoo.com, Laxmi, Invalid)">
-                  </a> <!-- excelDataTest(lakshmi@yahoo.com, Laxmi, Invalid) -->
-                  <span class="method-name">excelDataTest</span>
-                  <span class="parameters">(lakshmi@yahoo.com,Laxmi,Invalid)</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)">
-                  </a> <!-- excelDataTest(laksh@yahoo.com, Lakshmi, Invalid) -->
-                  <span class="method-name">excelDataTest</span>
-                  <span class="parameters">(laksh@yahoo.com,Lakshmi,Invalid)</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
                   <a name="excelDataTest(laks@yahoo.com, xyz, Invalid)">
                   </a> <!-- excelDataTest(laks@yahoo.com, xyz, Invalid) -->
                   <span class="method-name">excelDataTest</span>
@@ -279,6 +293,14 @@
                   </a> <!-- excelDataTest(abc123@gmail.com, test@123, Valid) -->
                   <span class="method-name">excelDataTest</span>
                   <span class="parameters">(abc123@gmail.com,test@123,Valid)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)">
+                  </a> <!-- excelDataTest(laksh@yahoo.com, Lakshmi, Invalid) -->
+                  <span class="method-name">excelDataTest</span>
+                  <span class="parameters">(laksh@yahoo.com,Lakshmi,Invalid)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -292,11 +314,11 @@
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite name=&quot;Suite&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
+&lt;suite thread-count=&quot;1&quot; name=&quot;Suite&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
   &lt;listeners&gt;
     &lt;listener class-name=&quot;utilities.ExtentReportManager&quot;/&gt;
   &lt;/listeners&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;Linux-Chrome&quot; verbose=&quot;0&quot;&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;Linux-Chrome&quot; verbose=&quot;0&quot;&gt;
     &lt;parameter name=&quot;os&quot; value=&quot;Linux&quot;/&gt;
     &lt;parameter name=&quot;browser&quot; value=&quot;chrome&quot;/&gt;
     &lt;classes&gt;
@@ -304,7 +326,7 @@
       &lt;class name=&quot;testCases.ExcelDataTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Linux-Chrome --&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;Linux-Firefox&quot; verbose=&quot;0&quot;&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;Linux-Firefox&quot; verbose=&quot;0&quot;&gt;
     &lt;parameter name=&quot;os&quot; value=&quot;Linux&quot;/&gt;
     &lt;parameter name=&quot;browser&quot; value=&quot;firefox&quot;/&gt;
     &lt;classes&gt;
@@ -356,39 +378,39 @@ data.addRows(12);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'demoTest')
 data.setCell(0, 2, 'testCases.DemoTest')
-data.setCell(0, 3, 5282);
+data.setCell(0, 3, 5515);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'demoTest')
 data.setCell(1, 2, 'testCases.DemoTest')
-data.setCell(1, 3, 4417);
+data.setCell(1, 3, 781);
 data.setCell(2, 0, 2)
 data.setCell(2, 1, 'excelDataTest')
 data.setCell(2, 2, 'testCases.ExcelDataTest')
-data.setCell(2, 3, 8);
+data.setCell(2, 3, 25);
 data.setCell(3, 0, 3)
 data.setCell(3, 1, 'excelDataTest')
 data.setCell(3, 2, 'testCases.ExcelDataTest')
-data.setCell(3, 3, 7);
+data.setCell(3, 3, 13);
 data.setCell(4, 0, 4)
 data.setCell(4, 1, 'excelDataTest')
 data.setCell(4, 2, 'testCases.ExcelDataTest')
-data.setCell(4, 3, 6);
+data.setCell(4, 3, 7);
 data.setCell(5, 0, 5)
 data.setCell(5, 1, 'excelDataTest')
 data.setCell(5, 2, 'testCases.ExcelDataTest')
-data.setCell(5, 3, 5);
+data.setCell(5, 3, 7);
 data.setCell(6, 0, 6)
 data.setCell(6, 1, 'excelDataTest')
 data.setCell(6, 2, 'testCases.ExcelDataTest')
-data.setCell(6, 3, 4);
+data.setCell(6, 3, 6);
 data.setCell(7, 0, 7)
 data.setCell(7, 1, 'excelDataTest')
 data.setCell(7, 2, 'testCases.ExcelDataTest')
-data.setCell(7, 3, 2);
+data.setCell(7, 3, 5);
 data.setCell(8, 0, 8)
 data.setCell(8, 1, 'excelDataTest')
 data.setCell(8, 2, 'testCases.ExcelDataTest')
-data.setCell(8, 3, 1);
+data.setCell(8, 3, 3);
 data.setCell(9, 0, 9)
 data.setCell(9, 1, 'excelDataTest')
 data.setCell(9, 2, 'testCases.ExcelDataTest')
@@ -405,7 +427,7 @@ window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 9 seconds</span>
+              <span class="suite-total-time">Total running time: 6 seconds</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -438,88 +460,90 @@ return data;
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">demoTest</span>
-                <span class="method-start">2808 ms</span>
+                <span class="method-start">3901 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">7235 ms</span>
+                <span class="method-start">9428 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">testCases.ExcelDataTest</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">setup(Linux, chrome)</span>
-                <span class="method-start">7325 ms</span>
+                <span class="method-start">9578 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">excelDataTest(pavanoltraining@gmail.com, test@123, Valid)</span>
-                <span class="method-start">10327 ms</span>
+                <span class="method-start">12711 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">excelDataTest(lakshmi@yahoo.com, Laxmi, Invalid)</span>
-                <span class="method-start">10339 ms</span>
+                <span class="method-start">12724 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)</span>
-                <span class="method-start">10348 ms</span>
+                <span class="method-start">12732 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">excelDataTest(laks@yahoo.com, xyz, Invalid)</span>
-                <span class="method-start">10358 ms</span>
+                <span class="method-start">12735 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">excelDataTest(abc123@gmail.com, test@123, Valid)</span>
-                <span class="method-start">10361 ms</span>
+                <span class="method-start">12740 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">10376 ms</span>
+                <span class="method-start">12743 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">testCases.DemoTest</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">setup(Linux, firefox)</span>
-                <span class="method-start">10976 ms</span>
+                <span class="method-start">13503 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">demoTest</span>
-                <span class="method-start">15311 ms</span>
+                <span class="method-start">19493 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">20594 ms</span>
+                <span class="method-start">20613 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">testCases.ExcelDataTest</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">setup(Linux, firefox)</span>
-                <span class="method-start">21303 ms</span>
+                <span class="method-start">21887 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">excelDataTest(pavanoltraining@gmail.com, test@123, Valid)</span>
-                <span class="method-start">26053 ms</span>
+                <span class="method-start">28145 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">excelDataTest(lakshmi@yahoo.com, Laxmi, Invalid)</span>
-                <span class="method-start">26059 ms</span>
+                <span class="method-start">28158 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">excelDataTest(laksh@yahoo.com, Lakshmi, Invalid)</span>
-                <span class="method-start">26068 ms</span>
+                <span class="method-start">28173 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">excelDataTest(laks@yahoo.com, xyz, Invalid)</span>
-                <span class="method-start">26076 ms</span>
+                <span class="method-start">28176 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">excelDataTest(abc123@gmail.com, test@123, Valid)</span>
-                <span class="method-start">26084 ms</span>
+                <span class="method-start">28213 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">26092 ms</span>
+                <span class="method-start">28222 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
