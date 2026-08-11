@@ -50,11 +50,7 @@ public class DemoPage {
 	    wait.until(ExpectedConditions.urlToBe(
 	            "https://playwright.dev/docs/pom"
 	    ));
-	    wait.until(driver -> {
-	        WebElement heading = driver.findElement(By.tagName("h1"));
-	        return heading.isDisplayed()
-	                && heading.getText().trim().equals(value);
-	    });
+	    Thread.sleep(2000); // Wait for the page to load completely
 	    WebElement heading = wait.until(
 	            ExpectedConditions.refreshed(
 	                    ExpectedConditions.visibilityOfElementLocated(By.tagName("h1"))
