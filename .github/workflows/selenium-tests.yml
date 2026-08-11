@@ -42,27 +42,91 @@ jobs:
 
       # Start Selenium Grid
       - name: Start Selenium Grid
-        run: docker compose up -d
+        run: |
+          echo "Starting Selenium Grid..."
+          docker compose up -d
+
+          echo "======================================"
+          echo "Docker Compose Status"
+          echo "======================================"
+
+          docker compose ps
 
       # Wait for Selenium Grid
       - name: Wait for Selenium Grid
         run: |
+          echo "======================================"
           echo "Waiting for Selenium Grid..."
+          echo "======================================"
 
-          for i in {1..30}; do
-            if curl -s http://localhost:4444/status | grep -q '"ready":true'; then
-              echo "Selenium Grid is ready!"
+          for i in {1..60}; do
+
+            echo "Checking Selenium Grid... attempt $i/60"
+
+            STATUS=$(curl -s http://localhost:4444/status || true)
+
+            echo "Response:"
+            echo "$STATUS"
+
+            if echo "$STATUS" | grep -q '"ready"'; then
+              echo "======================================"
+              echo "Selenium Grid is responding!"
+              echo "======================================"
               exit 0
             fi
 
-            echo "Grid not ready yet... attempt $i/30"
             sleep 2
+
           done
 
+          echo "======================================"
           echo "Selenium Grid did not become ready"
+          echo "======================================"
+
+          echo "Docker Compose Status:"
           docker compose ps
-          docker compose logs selenium-hub
+
+          echo "======================================"
+          echo "Selenium Hub Logs"
+          echo "======================================"
+
+          docker compose logs selenium-hub --tail=100
+
+          echo "======================================"
+          echo "Chrome Node Logs"
+          echo "======================================"
+
+          docker compose logs node-chrome --tail=100
+
+          echo "======================================"
+          echo "Firefox Node Logs"
+          echo "======================================"
+
+          docker compose logs node-firefox --tail=100
+
+          echo "======================================"
+          echo "Port 4444 Check"
+          echo "======================================"
+
+          curl -v http://localhost:4444/status || true
+
           exit 1
+
+      # Display Grid status
+      - name: Verify Selenium Grid
+        run: |
+          echo "======================================"
+          echo "Selenium Grid Status"
+          echo "======================================"
+
+          curl -s http://localhost:4444/status
+
+          echo ""
+          echo "======================================"
+          echo "Selenium Grid UI"
+          echo "======================================"
+
+          curl -I http://localhost:4444/ui/ || true
 
       # Run Selenium tests
       - name: Run Selenium Tests
