@@ -1,114 +1,31 @@
-name: Selenium Tests
+version: '3'
+services:
 
-on:
-  push:
-    branches:
-      - master
+  selenium-hub:
+    image: selenium/hub
+    ports:
+      - '4442-4444:4442-4444'
+    networks:
+      - grid
 
-  pull_request:
-    branches:
-      - master
+  node-chrome:
+    image: selenium/node-chrome
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    networks:
+      - grid
 
-jobs:
+  node-firefox:
+    image: selenium/node-firefox
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    networks:
+      - grid
 
-  selenium-tests:
-
-    runs-on: ubuntu-latest
-
-    steps:
-
-      # 1. Checkout source code
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # 2. Setup Java
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '21'
-          cache: maven
-
-      # 3. Check Java and Maven versions
-      - name: Check Java and Maven
-        run: |
-          java -version
-          mvn -version
-          docker --version
-          docker compose version
-
-      # 4. Start Selenium Grid
-      - name: Start Selenium Grid
-        run: |
-          docker compose up -d
-
-      # 5. Display running containers
-      - name: Check Selenium containers
-        run: |
-          docker compose ps
-
-      # 6. Wait for Selenium Grid to become ready
-      - name: Wait for Selenium Grid
-        run: |
-          echo "Waiting for Selenium Grid..."
-
-          for i in {1..30}; do
-
-            if curl -s http://localhost:4444/status | grep -q '"ready":true'; then
-              echo "Selenium Grid is ready!"
-              break
-            fi
-
-            echo "Selenium Grid is not ready yet..."
-            sleep 2
-
-          done
-
-      # 7. Display Selenium Grid status
-      - name: Selenium Grid status
-        run: |
-          curl http://localhost:4444/status
-
-      # 8. Run Maven tests
-      - name: Run Selenium Tests
-        run: |
-          mvn clean test
-
-      # 9. Upload Extent Report
-      - name: Upload Extent Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: selenium-extent-report
-          path: reports/
-          if-no-files-found: warn
-
-      # 10. Upload Surefire test reports
-      - name: Upload Surefire Reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: surefire-reports
-          path: target/surefire-reports/
-          if-no-files-found: warn
-
-      # 11. Upload screenshots if available
-      - name: Upload Screenshots
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: selenium-screenshots
-          path: screenshots/
-          if-no-files-found: warn
-
-      # 12. Show Docker logs if tests fail
-      - name: Selenium Grid logs
-        if: failure()
-        run: |
-          docker compose logs
-
-      # 13. Stop Selenium Grid
-      - name: Stop Selenium Grid
-        if: always()
-        run: |
-          docker compose down
+networks:
+  grid:
+    driver: bridge
