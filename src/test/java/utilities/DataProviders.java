@@ -1,6 +1,8 @@
 package utilities;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.testng.annotations.DataProvider;
 
@@ -9,7 +11,13 @@ public class DataProviders {
 	// DataProvider 1
 	@DataProvider(name = "TestData")
 	public String[][] getData() throws IOException {
-		String path = ".\\testData\\TestData.xlsx"; // taking xl file from testData
+		Path filePath = Paths.get(
+                System.getProperty("user.dir"),
+                "testData",
+                "TestData.xlsx"
+        );
+
+        String path = filePath.toString(); // taking xl file from testData
 		ExcelUtility xlutil = new ExcelUtility(path); // creating an object for XLUtility
 		int totalrows = xlutil.getRowCount("Sheet1");
 		int totalcols = xlutil.getCellCount("Sheet1", 1);
