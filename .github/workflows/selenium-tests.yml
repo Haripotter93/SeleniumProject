@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -26,38 +27,66 @@ jobs:
           java-version: '21'
           cache: maven
 
+      # IMPORTANT
+      - name: Clean old reports and screenshots
+        run: |
+          echo "Cleaning old reports..."
+          rm -rf reports
+          rm -rf screenshots
+
+          mkdir -p reports
+          mkdir -p screenshots
+
+          echo "Reports directory:"
+          ls -la reports
+
       - name: Start Selenium Grid
         run: docker compose up -d
 
       - name: Wait for Selenium Grid
         run: |
           echo "Waiting for Selenium Grid..."
+
           for i in {1..30}; do
             if curl -s http://localhost:4444/status | grep -q '"ready":true'; then
               echo "Selenium Grid is ready!"
               break
             fi
+
             sleep 2
           done
 
       - name: Run Selenium Tests
         run: mvn clean test
 
-      - name: List generated reports
+      # Check exactly what was generated
+      - name: Check generated reports
         if: always()
         run: |
-          echo "=== Reports ==="
+          echo "======================================"
+          echo "REPORT FILES"
+          echo "======================================"
+
           find reports -type f -print 2>/dev/null || true
 
-          echo "=== Screenshots ==="
+          echo "======================================"
+          echo "SCREENSHOT FILES"
+          echo "======================================"
+
           find screenshots -type f -print 2>/dev/null || true
+
+          echo "======================================"
+          echo "REPORT COUNT"
+          echo "======================================"
+
+          find reports -type f -name "*.html" | wc -l
 
       - name: Upload Extent Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: Extent-Test-Report
-          path: reports/
+          path: reports/ExtentReport.html
           if-no-files-found: warn
 
       - name: Upload Screenshots
