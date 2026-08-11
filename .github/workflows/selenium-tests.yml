@@ -1,3 +1,4 @@
+```yaml
 name: Selenium Tests
 
 on:
@@ -27,7 +28,7 @@ jobs:
           java-version: '21'
           cache: maven
 
-      # IMPORTANT
+      # Clean old reports and screenshots
       - name: Clean old reports and screenshots
         run: |
           echo "Cleaning old reports..."
@@ -40,9 +41,11 @@ jobs:
           echo "Reports directory:"
           ls -la reports
 
+      # Start Selenium Grid
       - name: Start Selenium Grid
         run: docker compose up -d
 
+      # Wait for Selenium Grid
       - name: Wait for Selenium Grid
         run: |
           echo "Waiting for Selenium Grid..."
@@ -50,16 +53,23 @@ jobs:
           for i in {1..30}; do
             if curl -s http://localhost:4444/status | grep -q '"ready":true'; then
               echo "Selenium Grid is ready!"
-              break
+              exit 0
             fi
 
+            echo "Grid not ready yet... attempt $i/30"
             sleep 2
           done
 
+          echo "Selenium Grid did not become ready"
+          docker compose ps
+          docker compose logs selenium-hub
+          exit 1
+
+      # Run Selenium tests
       - name: Run Selenium Tests
         run: mvn clean test
 
-      # Check exactly what was generated
+      # Check generated reports and screenshots
       - name: Check generated reports
         if: always()
         run: |
@@ -81,14 +91,16 @@ jobs:
 
           find reports -type f -name "*.html" | wc -l
 
-      - name: Upload Extent Report
+      # Upload ALL Extent reports
+      - name: Upload Extent Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Extent-Test-Report
-          path: reports/ExtentReport.html
+          name: Extent-Test-Reports
+          path: reports/
           if-no-files-found: warn
 
+      # Upload screenshots
       - name: Upload Screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -97,6 +109,8 @@ jobs:
           path: screenshots/
           if-no-files-found: warn
 
+      # Stop Selenium Grid
       - name: Stop Selenium Grid
         if: always()
         run: docker compose down
+```
