@@ -9,14 +9,13 @@ on:
     branches:
       - master
 
+  workflow_dispatch:
+
 jobs:
-
   selenium-tests:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -24,76 +23,51 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: "21"
+          java-version: '21'
           cache: maven
 
-      - name: Check Java and Maven
-        run: |
-          java -version
-          mvn -version
-          docker --version
-          docker compose version
-
       - name: Start Selenium Grid
-        run: |
-          docker compose up -d
-
-      - name: Check Selenium containers
-        run: |
-          docker compose ps
+        run: docker compose up -d
 
       - name: Wait for Selenium Grid
         run: |
           echo "Waiting for Selenium Grid..."
-
           for i in {1..30}; do
             if curl -s http://localhost:4444/status | grep -q '"ready":true'; then
               echo "Selenium Grid is ready!"
               break
             fi
-
-            echo "Waiting for Selenium Grid..."
             sleep 2
           done
 
-      - name: Selenium Grid status
-        run: |
-          curl http://localhost:4444/status
-
       - name: Run Selenium Tests
+        run: mvn clean test
+
+      - name: List generated reports
+        if: always()
         run: |
-          mvn clean test
+          echo "=== Reports ==="
+          find reports -type f -print 2>/dev/null || true
+
+          echo "=== Screenshots ==="
+          find screenshots -type f -print 2>/dev/null || true
 
       - name: Upload Extent Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: selenium-extent-report
+          name: Extent-Test-Report
           path: reports/
-          if-no-files-found: warn
-
-      - name: Upload Surefire Reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: surefire-reports
-          path: target/surefire-reports/
           if-no-files-found: warn
 
       - name: Upload Screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: selenium-screenshots
+          name: Test-Screenshots
           path: screenshots/
           if-no-files-found: warn
 
-      - name: Selenium Grid logs
-        if: failure()
-        run: |
-          docker compose logs
-
       - name: Stop Selenium Grid
         if: always()
-        run: |
-          docker compose down
+        run: docker compose down
