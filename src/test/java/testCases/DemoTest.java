@@ -31,7 +31,7 @@ public class DemoTest extends BaseClass {
                     driver.getTitle(),
                     "Fast and reliable end-to-end testing for modern web apps | Playwright"
             );
-
+            logger.info("----Title asserted----");
             demoPage.search("Page object models");
 
             Assert.assertEquals(
@@ -49,13 +49,13 @@ public class DemoTest extends BaseClass {
                     "arguments[0].scrollIntoView({block: 'center', inline: 'center'});",
                     link
             );
-
+            logger.info("----Scroll asserted----");
             demoPage.wait.until(
                     ExpectedConditions.elementToBeClickable(link)
             ).click();
 
             demoPage.wait.until(ExpectedConditions.urlContains("/screenshots"));
-
+            logger.info("----Screenshots page loaded----");
             Assert.assertTrue(
                     driver.getCurrentUrl().contains("/screenshots")
             );
