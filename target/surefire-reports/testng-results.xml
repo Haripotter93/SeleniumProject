@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="12" passed="11" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-08-11T23:36:46 IST" name="Suite" finished-at="2026-08-11T23:37:16 IST" duration-ms="29948">
+  <suite started-at="2026-08-12T13:14:34 IST" name="Suite" finished-at="2026-08-12T13:14:53 IST" duration-ms="19147">
     <groups>
     </groups>
-    <test started-at="2026-08-11T23:36:46 IST" name="Linux-Chrome" finished-at="2026-08-11T23:36:59 IST" duration-ms="13205">
+    <test started-at="2026-08-12T13:14:34 IST" name="Linux-Chrome" finished-at="2026-08-12T13:14:53 IST" duration-ms="19147">
       <class name="testCases.DemoTest">
-        <test-method is-config="true" signature="setup(java.lang.String,java.lang.String)[pri:0, instance:testCases.DemoTest@4a94ee4]" started-at="2026-08-11T23:36:46 IST" name="setup" finished-at="2026-08-11T23:36:50 IST" duration-ms="3889" status="PASS">
+        <test-method is-config="true" signature="setup(java.lang.String,java.lang.String)[pri:0, instance:testCases.DemoTest@79924b]" started-at="2026-08-12T13:14:34 IST" name="setup" finished-at="2026-08-12T13:14:40 IST" duration-ms="5416" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -23,175 +23,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="demoTest()[pri:0, instance:testCases.DemoTest@4a94ee4]" started-at="2026-08-11T23:36:50 IST" name="demoTest" finished-at="2026-08-11T23:36:56 IST" duration-ms="5515" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- demoTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.DemoTest@4a94ee4]" started-at="2026-08-11T23:36:56 IST" name="tearDown" finished-at="2026-08-11T23:36:56 IST" duration-ms="148" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- testCases.DemoTest -->
-      <class name="testCases.ExcelDataTest">
-        <test-method is-config="true" signature="setup(java.lang.String,java.lang.String)[pri:0, instance:testCases.ExcelDataTest@12468a38]" started-at="2026-08-11T23:36:56 IST" name="setup" finished-at="2026-08-11T23:36:58 IST" duration-ms="1724" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Linux]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="excelDataTest(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testCases.ExcelDataTest@12468a38]" started-at="2026-08-11T23:36:59 IST" name="excelDataTest" data-provider="TestData" finished-at="2026-08-11T23:36:59 IST" duration-ms="7" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[pavanoltraining@gmail.com]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[test@123]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Valid]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- excelDataTest -->
-        <test-method signature="excelDataTest(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testCases.ExcelDataTest@12468a38]" started-at="2026-08-11T23:36:59 IST" name="excelDataTest" data-provider="TestData" finished-at="2026-08-11T23:36:59 IST" duration-ms="6" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[lakshmi@yahoo.com]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Laxmi]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Invalid]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- excelDataTest -->
-        <test-method signature="excelDataTest(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testCases.ExcelDataTest@12468a38]" started-at="2026-08-11T23:36:59 IST" name="excelDataTest" data-provider="TestData" finished-at="2026-08-11T23:36:59 IST" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[laksh@yahoo.com]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Lakshmi]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Invalid]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- excelDataTest -->
-        <test-method signature="excelDataTest(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testCases.ExcelDataTest@12468a38]" started-at="2026-08-11T23:36:59 IST" name="excelDataTest" data-provider="TestData" finished-at="2026-08-11T23:36:59 IST" duration-ms="3" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[laks@yahoo.com]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[xyz]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Invalid]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- excelDataTest -->
-        <test-method signature="excelDataTest(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testCases.ExcelDataTest@12468a38]" started-at="2026-08-11T23:36:59 IST" name="excelDataTest" data-provider="TestData" finished-at="2026-08-11T23:36:59 IST" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[abc123@gmail.com]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[test@123]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Valid]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- excelDataTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.ExcelDataTest@12468a38]" started-at="2026-08-11T23:36:59 IST" name="tearDown" finished-at="2026-08-11T23:36:59 IST" duration-ms="110" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- testCases.ExcelDataTest -->
-    </test> <!-- Linux-Chrome -->
-    <test started-at="2026-08-11T23:37:00 IST" name="Linux-Firefox" finished-at="2026-08-11T23:37:16 IST" duration-ms="16095">
-      <class name="testCases.DemoTest">
-        <test-method is-config="true" signature="setup(java.lang.String,java.lang.String)[pri:0, instance:testCases.DemoTest@55183b20]" started-at="2026-08-11T23:37:00 IST" name="setup" finished-at="2026-08-11T23:37:06 IST" duration-ms="5989" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Linux]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[firefox]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="demoTest()[pri:0, instance:testCases.DemoTest@55183b20]" started-at="2026-08-11T23:37:06 IST" name="demoTest" finished-at="2026-08-11T23:37:07 IST" duration-ms="781" status="FAIL">
+        <test-method signature="demoTest()[pri:0, instance:testCases.DemoTest@79924b]" started-at="2026-08-12T13:14:40 IST" name="demoTest" finished-at="2026-08-12T13:14:53 IST" duration-ms="13253" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[expected [Fast and reliable end-to-end testing for modern web apps | Playwright] but found [Playwright]]]>
+              <![CDATA[Demo test failed]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [Fast and reliable end-to-end testing for modern web apps | Playwright] but found [Playwright]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failNotEquals(Assert.java:1578)
-at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-at org.testng.Assert.assertEquals(Assert.java:132)
-at org.testng.Assert.assertEquals(Assert.java:656)
-at org.testng.Assert.assertEquals(Assert.java:666)
-at testCases.DemoTest.demoTest(DemoTest.java:30)
+              <![CDATA[java.lang.AssertionError: Demo test failed
+at org.testng.Assert.fail(Assert.java:99)
+at testCases.DemoTest.demoTest(DemoTest.java:67)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -222,144 +62,43 @@ at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter
 at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
 at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+Caused by: org.openqa.selenium.WebDriverException: tab crashed
+  (Session info: chrome=150.0.7871.124) (error code: "tab crashed")
+Build info: version: '4.46.0', revision: 'df5a634 df5a6341cbb5f8f06b836bd595752775627c80dc'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [4c47c45ad41eec2dae0188b1f0cc631c, findElement {using=tag name, value=h1}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.124, chrome: {chromedriverVersion: 150.0.7871.124 (9261fd0a595..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:41025}, goog:processID: 198, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:bidiEnabled: false, se:cdp: ws://172.19.0.3:4444/sessio..., se:cdpVersion: 150.0.7871.124, se:containerName: 5de06d53be04, se:deleteSessionOnUi: true, se:downloadsEnabled: true, se:noVncPort: 7900, se:vnc: ws://172.19.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.19.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 4c47c45ad41eec2dae0188b1f0cc631c
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:172)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:143)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:196)
+at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:51)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:626)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:173)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:406)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:400)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:222)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:215)
+at org.openqa.selenium.support.ui.ExpectedConditions$25.apply(ExpectedConditions.java:857)
+at org.openqa.selenium.support.ui.ExpectedConditions$25.apply(ExpectedConditions.java:853)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:210)
+at pages.DemoPage.search(DemoPage.java:54)
+at testCases.DemoTest.demoTest(DemoTest.java:35)
+... 30 more
 ]]>
             </full-stacktrace>
           </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- demoTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.DemoTest@55183b20]" started-at="2026-08-11T23:37:07 IST" name="tearDown" finished-at="2026-08-11T23:37:08 IST" duration-ms="1274" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.DemoTest@79924b]" started-at="2026-08-12T13:14:53 IST" name="tearDown" finished-at="2026-08-12T13:14:53 IST" duration-ms="95" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- testCases.DemoTest -->
-      <class name="testCases.ExcelDataTest">
-        <test-method is-config="true" signature="setup(java.lang.String,java.lang.String)[pri:0, instance:testCases.ExcelDataTest@4f83df68]" started-at="2026-08-11T23:37:08 IST" name="setup" finished-at="2026-08-11T23:37:14 IST" duration-ms="5268" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Linux]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[firefox]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="excelDataTest(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testCases.ExcelDataTest@4f83df68]" started-at="2026-08-11T23:37:15 IST" name="excelDataTest" data-provider="TestData" finished-at="2026-08-11T23:37:15 IST" duration-ms="5" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[pavanoltraining@gmail.com]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[test@123]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Valid]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- excelDataTest -->
-        <test-method signature="excelDataTest(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testCases.ExcelDataTest@4f83df68]" started-at="2026-08-11T23:37:15 IST" name="excelDataTest" data-provider="TestData" finished-at="2026-08-11T23:37:15 IST" duration-ms="13" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[lakshmi@yahoo.com]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Laxmi]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Invalid]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- excelDataTest -->
-        <test-method signature="excelDataTest(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testCases.ExcelDataTest@4f83df68]" started-at="2026-08-11T23:37:15 IST" name="excelDataTest" data-provider="TestData" finished-at="2026-08-11T23:37:15 IST" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[laksh@yahoo.com]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Lakshmi]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Invalid]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- excelDataTest -->
-        <test-method signature="excelDataTest(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testCases.ExcelDataTest@4f83df68]" started-at="2026-08-11T23:37:15 IST" name="excelDataTest" data-provider="TestData" finished-at="2026-08-11T23:37:15 IST" duration-ms="25" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[laks@yahoo.com]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[xyz]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Invalid]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- excelDataTest -->
-        <test-method signature="excelDataTest(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testCases.ExcelDataTest@4f83df68]" started-at="2026-08-11T23:37:15 IST" name="excelDataTest" data-provider="TestData" finished-at="2026-08-11T23:37:15 IST" duration-ms="7" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[abc123@gmail.com]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[test@123]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Valid]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- excelDataTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.ExcelDataTest@4f83df68]" started-at="2026-08-11T23:37:15 IST" name="tearDown" finished-at="2026-08-11T23:37:16 IST" duration-ms="1374" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- testCases.ExcelDataTest -->
-    </test> <!-- Linux-Firefox -->
+    </test> <!-- Linux-Chrome -->
   </suite> <!-- Suite -->
 </testng-results>
