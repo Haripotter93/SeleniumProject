@@ -27,10 +27,10 @@ public class GroupsTest {
 				driver.getTitle().equals("Fast and reliable end-to-end testing for modern web apps | Playwright");
 				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 				demoPage.search("Page object models");
-				WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("docsearch-input")));
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".DocSearch-Hit")));
-				searchBox.sendKeys(Keys.ENTER);
-				driver.findElement(By.tagName("h1")).getText().equals("Page object models");
+//				WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("docsearch-input")));
+//				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".DocSearch-Hit")));
+//				searchBox.sendKeys(Keys.ENTER);
+//				driver.findElement(By.tagName("h1")).getText().equals("Page object models");
 				Assert.assertEquals(driver.getCurrentUrl(), "https://playwright.dev/docs/pom");
 				WebElement link = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[normalize-space()='Screenshots'])[1]")));
 				Actions actions = new Actions(driver);

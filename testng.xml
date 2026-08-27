@@ -6,7 +6,7 @@
 </listener>
 </listeners>
   <test thread-count="5" name="Test">
-  	<parameter name="os" value="Windows"></parameter>
+  	<parameter name="os" value="Linux"></parameter>
   	<parameter name="browser" value="chrome"></parameter>
     <classes>
       <class name="testCases.DemoTest"/>

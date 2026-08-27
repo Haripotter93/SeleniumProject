@@ -1,18 +1,6 @@
-13:14:53.383 [main] INFO  testCases.DemoTest - ----Demo test end----
-13:21:53.507 [main] INFO  testCases.DemoTest - ----Demo test start----
-13:21:57.328 [main] INFO  testCases.DemoTest - ----Demo test end----
-13:23:53.670 [main] INFO  testCases.DemoTest - ----Demo test start----
-13:23:53.898 [main] INFO  testCases.DemoTest - ----Title asserted----
-13:23:57.671 [main] INFO  testCases.DemoTest - ----Scroll asserted----
-13:23:57.856 [main] INFO  testCases.DemoTest - ----Screenshots page loaded----
-13:23:57.877 [main] INFO  testCases.DemoTest - ----Demo test end----
-13:24:41.897 [main] INFO  testCases.DemoTest - ----Demo test start----
-13:24:42.126 [main] INFO  testCases.DemoTest - ----Title asserted----
-13:24:45.834 [main] INFO  testCases.DemoTest - ----Scroll asserted----
-13:24:46.013 [main] INFO  testCases.DemoTest - ----Screenshots page loaded----
-13:24:46.035 [main] INFO  testCases.DemoTest - ----Demo test end----
-13:24:52.167 [main] INFO  testCases.DemoTest - ----Demo test start----
-13:24:53.138 [main] INFO  testCases.DemoTest - ----Title asserted----
-13:24:58.220 [main] INFO  testCases.DemoTest - ----Scroll asserted----
-13:24:58.550 [main] INFO  testCases.DemoTest - ----Screenshots page loaded----
-13:24:58.570 [main] INFO  testCases.DemoTest - ----Demo test end----
+17:22:17.780 [main] INFO  testCases.DemoTest - ----Demo test end----
+17:22:22.646 [main] INFO  testCases.DemoTest - ----Demo test start----
+17:22:23.436 [main] INFO  testCases.DemoTest - ----Title asserted----
+17:22:28.073 [main] INFO  testCases.DemoTest - ----Scroll asserted----
+17:22:28.239 [main] INFO  testCases.DemoTest - ----Screenshots page loaded----
+17:22:28.248 [main] INFO  testCases.DemoTest - ----Demo test end----

@@ -1,25 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-08-12T14:37:28 IST" name="Default suite" finished-at="2026-08-12T14:38:05 IST" duration-ms="37408">
+  <suite started-at="2026-08-27T17:22:10 IST" name="crossbrowsersuite" finished-at="2026-08-27T17:22:28 IST" duration-ms="18551">
     <groups>
     </groups>
-    <test started-at="2026-08-12T14:37:28 IST" name="Default test" finished-at="2026-08-12T14:38:05 IST" duration-ms="37408">
-      <class name="test.Dropdown">
-        <test-method signature="simpleDropDownSelect()[pri:1, instance:test.Dropdown@5fe94a96]" started-at="2026-08-12T14:37:28 IST" name="simpleDropDownSelect" finished-at="2026-08-12T14:37:41 IST" duration-ms="12674" status="PASS">
+    <test started-at="2026-08-27T17:22:10 IST" name="chrometest" finished-at="2026-08-27T17:22:17 IST" duration-ms="7465">
+      <class name="testCases.DemoTest">
+        <test-method is-config="true" signature="setup(java.lang.String,java.lang.String)[pri:0, instance:testCases.DemoTest@185a6e9]" started-at="2026-08-27T17:22:10 IST" name="setup" finished-at="2026-08-27T17:22:13 IST" duration-ms="3036" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Linux]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- simpleDropDownSelect -->
-        <test-method signature="styledDropDownSelect()[pri:2, instance:test.Dropdown@5fe94a96]" started-at="2026-08-12T14:37:41 IST" name="styledDropDownSelect" finished-at="2026-08-12T14:37:53 IST" duration-ms="12410" status="PASS">
+        </test-method> <!-- setup -->
+        <test-method signature="demoTest()[pri:0, instance:testCases.DemoTest@185a6e9]" started-at="2026-08-27T17:22:13 IST" name="demoTest" finished-at="2026-08-27T17:22:17 IST" duration-ms="4043" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- styledDropDownSelect -->
-        <test-method signature="multiSelectDropDownSelect()[pri:3, instance:test.Dropdown@5fe94a96]" started-at="2026-08-12T14:37:53 IST" name="multiSelectDropDownSelect" finished-at="2026-08-12T14:38:05 IST" duration-ms="12258" status="PASS">
+        </test-method> <!-- demoTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.DemoTest@185a6e9]" started-at="2026-08-27T17:22:17 IST" name="tearDown" finished-at="2026-08-27T17:22:17 IST" duration-ms="86" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- multiSelectDropDownSelect -->
-      </class> <!-- test.Dropdown -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+        </test-method> <!-- tearDown -->
+      </class> <!-- testCases.DemoTest -->
+    </test> <!-- chrometest -->
+    <test started-at="2026-08-27T17:22:18 IST" name="firefoxtest" finished-at="2026-08-27T17:22:28 IST" duration-ms="10539">
+      <class name="testCases.DemoTest">
+        <test-method is-config="true" signature="setup(java.lang.String,java.lang.String)[pri:0, instance:testCases.DemoTest@2df3b89c]" started-at="2026-08-27T17:22:18 IST" name="setup" finished-at="2026-08-27T17:22:22 IST" duration-ms="4183" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Linux]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="demoTest()[pri:0, instance:testCases.DemoTest@2df3b89c]" started-at="2026-08-27T17:22:22 IST" name="demoTest" finished-at="2026-08-27T17:22:28 IST" duration-ms="5612" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- demoTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.DemoTest@2df3b89c]" started-at="2026-08-27T17:22:28 IST" name="tearDown" finished-at="2026-08-27T17:22:28 IST" duration-ms="729" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- testCases.DemoTest -->
+    </test> <!-- firefoxtest -->
+  </suite> <!-- crossbrowsersuite -->
 </testng-results>

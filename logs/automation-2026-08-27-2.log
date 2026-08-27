@@ -1,0 +1,58 @@
+16:43:30.909 [main] INFO  testCases.DemoTest - ----Demo test end----
+16:43:34.768 [main] INFO  testCases.DemoTest - ----Demo test start----
+16:43:35.150 [main] INFO  testCases.DemoTest - ----Title asserted----
+16:43:39.694 [main] INFO  testCases.DemoTest - ----Scroll asserted----
+16:43:39.891 [main] INFO  testCases.DemoTest - ----Screenshots page loaded----
+16:43:39.905 [main] INFO  testCases.DemoTest - ----Demo test end----
+16:46:33.443 [main] INFO  testCases.DemoTest - ----Demo test start----
+16:46:33.875 [main] INFO  testCases.DemoTest - ----Title asserted----
+16:46:37.737 [main] INFO  testCases.DemoTest - ----Scroll asserted----
+16:46:37.927 [main] INFO  testCases.DemoTest - ----Screenshots page loaded----
+16:46:37.977 [main] INFO  testCases.DemoTest - ----Demo test end----
+16:46:42.567 [main] INFO  testCases.DemoTest - ----Demo test start----
+16:46:42.973 [main] INFO  testCases.DemoTest - ----Title asserted----
+16:46:47.733 [main] INFO  testCases.DemoTest - ----Scroll asserted----
+16:46:47.914 [main] INFO  testCases.DemoTest - ----Screenshots page loaded----
+16:46:47.927 [main] INFO  testCases.DemoTest - ----Demo test end----
+16:47:26.817 [TestNG-tests-1] INFO  testCases.DemoTest - ----Demo test start----
+16:47:27.252 [TestNG-tests-1] INFO  testCases.DemoTest - ----Title asserted----
+16:47:31.283 [TestNG-tests-2] INFO  testCases.DemoTest - ----Demo test start----
+16:47:31.322 [TestNG-tests-1] INFO  testCases.DemoTest - ----Demo test end----
+16:47:32.905 [TestNG-tests-2] ERROR testCases.DemoTest - Demo test failed
+org.openqa.selenium.NoSuchSessionException: Tried to run command without establishing a connection
+Build info: version: '4.46.0', revision: 'df5a634 df5a6341cbb5f8f06b836bd595752775627c80dc'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [c5ea0c43-c9cb-4692-b0da-fcc01a5a6271, getTitle {}]
+Capabilities {acceptInsecureCerts: false, browserName: firefox, browserVersion: 152.0.6, container:hostname: 08090d77b62a, moz:accessibilityChecks: false, moz:buildID: 20260713164047, moz:geckodriverVersion: 0.37.0, moz:headless: false, moz:platformVersion: 6.18.33.1-microsoft-standar..., moz:processID: 2474, moz:profile: /tmp/rust_mozprofileDtE3D0, moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:bidiEnabled: false, se:cdpEnabled: false, se:containerName: 08090d77b62a, se:deleteSessionOnUi: true, se:downloadsEnabled: true, se:noVncPort: 7900, se:vnc: ws://172.19.0.2:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.19.0.2:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (X11; Linux x86...}
+Session ID: c5ea0c43-c9cb-4692-b0da-fcc01a5a6271
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169) ~[selenium-remote-driver-4.46.0.jar:?]
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:143) ~[selenium-remote-driver-4.46.0.jar:?]
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50) ~[selenium-remote-driver-4.46.0.jar:?]
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:196) ~[selenium-remote-driver-4.46.0.jar:?]
+	at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:51) ~[selenium-remote-driver-4.46.0.jar:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:626) ~[selenium-remote-driver-4.46.0.jar:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:708) ~[selenium-remote-driver-4.46.0.jar:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:712) ~[selenium-remote-driver-4.46.0.jar:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.getTitle(RemoteWebDriver.java:356) ~[selenium-remote-driver-4.46.0.jar:?]
+	at testCases.DemoTest.demoTest(DemoTest.java:31) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141) ~[testng-7.10.2.jar:7.10.2]
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686) ~[testng-7.10.2.jar:7.10.2]
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230) ~[testng-7.10.2.jar:7.10.2]
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63) ~[testng-7.10.2.jar:7.10.2]
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992) ~[testng-7.10.2.jar:7.10.2]
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203) ~[testng-7.10.2.jar:7.10.2]
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154) ~[testng-7.10.2.jar:7.10.2]
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134) ~[testng-7.10.2.jar:7.10.2]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[?:?]
+	at org.testng.TestRunner.privateRun(TestRunner.java:739) ~[testng-7.10.2.jar:7.10.2]
+	at org.testng.TestRunner.run(TestRunner.java:614) ~[testng-7.10.2.jar:7.10.2]
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421) ~[testng-7.10.2.jar:7.10.2]
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463) ~[testng-7.10.2.jar:7.10.2]
+	at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64) ~[testng-7.10.2.jar:7.10.2]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
